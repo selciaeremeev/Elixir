@@ -15,12 +15,12 @@ using System.Windows.Shapes;
 
 namespace Elixir.Views
 {
-    /// <summary>
-    /// LiveMirrorView.xaml の相互作用ロジック
-    /// </summary>
-    public partial class ScreenRecView : UserControl
+    public partial class HomeView : UserControl
     {
-        public ScreenRecView()
+        private static HomeView? _instance;
+        public static HomeView Instance => _instance ??= new HomeView();
+
+        public HomeView()
         {
             InitializeComponent();
         }

@@ -1,144 +1,233 @@
-﻿<Window x:Class="Elixir.MainWindow"
+﻿<Window x:Name="Window"
+        x:Class="Elixir.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Elixir"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
         Title="Elixir"
-        Height="800" Width="1200"
-        MinHeight="800" MinWidth="1200"
+        Width="1200"
+        Height="800"
+        MinWidth="1200"
+        MinHeight="800"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResize"
-        SnapsToDevicePixels="True"
-        Margin="0"
-        Background="#1F1F1F">
+        Style="{DynamicResource MainWindowStyle}">
 
-    <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0"
-                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
-                      GlassFrameThickness="1"
-                      CornerRadius="0"/>
-    </WindowChrome.WindowChrome>
+    <Grid x:Name="WindowGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-    <Border BorderBrush="#7160E8" BorderThickness="1">
-        <Grid>
-
-            <!-- カラム定義 -->
+        <!-- Caption Buttons -->
+        <Grid Grid.Row="0" Height="30">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <!-- サイドメニュー -->
-                <ColumnDefinition Width="1"/>
-                <!-- ボーダーライン -->
-                <ColumnDefinition Width="*"/>
-                <!-- メインコンテンツ -->
+                <ColumnDefinition Width="240" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- 行定義 -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <!-- タイトルバー -->
-                <RowDefinition Height="*"/>
-                <!-- メインコンテンツ -->
-                <RowDefinition Height="40"/>
-                <!-- フッター -->
-            </Grid.RowDefinitions>
-
-            <!-- カスタムタイトルバー (ウィンドウ全幅に拡張) -->
-            <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1F1F1F">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <!-- 最小化ボタン -->
-                    <Button Content="&#xE921;" FontFamily="Segoe MDL2 Assets"
-                            Style="{StaticResource CaptionButtonStyle}" Click="Minimize_Click"
-                            Panel.ZIndex="1" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <!-- 最大化ボタン -->
-                    <Button x:Name="MaximizeButton" Content="&#xE922;" FontFamily="Segoe MDL2 Assets"
-                            Style="{StaticResource CaptionButtonStyle}" Click="Maximize_Click"
-                            Panel.ZIndex="1" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <!-- 閉じるボタン -->
-                    <Button Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets"
-                            Style="{StaticResource CloseButtonStyle}" Click="Close_Click"
-                            Panel.ZIndex="1" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                </StackPanel>
-            </Grid>
-
-            <!-- サイドメニュー -->
-            <Grid Background="#1F1F1F" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch">
-                <StackPanel>
-
-                    <!-- タイトルロゴ + テキスト -->
-                    <StackPanel Orientation="Horizontal" Margin="10,10,10,20"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="pack://application:,,,/Resources/Images/Logo.png" 
-           Width="48" Height="48" Margin="0,0,10,0"/>
-                        <TextBlock Text="Elixir" FontSize="18" Foreground="White" 
-               FontWeight="Bold" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-
-                    <!-- ScreenCap+ -->
-                    <Button Style="{StaticResource MenuButton}" Click="NavigateToScreenCap">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <!-- アイコン -->
-                                <ColumnDefinition Width="*"/>
-                                <!-- テキスト -->
-                            </Grid.ColumnDefinitions>
-                            <fa:IconBlock Grid.Column="0" Icon="Camera" FontSize="16" 
-                                          Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                            <TextBlock Grid.Column="1" Text="ScreenCap+" FontSize="14" 
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- ScreenRec+ -->
-                    <Button Style="{StaticResource MenuButton}" Click="NavigateToScreenRec">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <!-- アイコン -->
-                                <ColumnDefinition Width="*"/>
-                                <!-- テキスト -->
-                            </Grid.ColumnDefinitions>
-                            <fa:IconBlock Grid.Column="0" Icon="Video" FontSize="16" 
-                                          Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                            <TextBlock Grid.Column="1" Text="ScreenRec+" FontSize="14" 
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-
-                    <!-- Settings -->
-                    <Button Style="{StaticResource MenuButton}" Click="NavigateToSettings">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <!-- アイコン -->
-                                <ColumnDefinition Width="*"/>
-                                <!-- テキスト -->
-                            </Grid.ColumnDefinitions>
-                            <fa:IconBlock Grid.Column="0" Icon="Cog" FontSize="16" 
-                                          Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                            <TextBlock Grid.Column="1" Text="Settings" FontSize="14" 
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                </StackPanel>
-            </Grid>
-
-            <!-- ボーダーライン -->
-            <Border Grid.Row="1" Grid.Column="1" Background="#444"/>
-
-            <!-- メインコンテンツ -->
-            <Border Grid.Row="1" Grid.Column="2" Background="#1F1F1F">
-                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+            <Border Background="Black" Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" />
             </Border>
 
-            <!-- フッター (タイトルバーと同じデザイン) -->
-            <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="#1F1F1F">
+            <Border Background="{StaticResource Background}" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-                <!-- フッター右側: コピーライト情報 -->
-                <TextBlock Grid.Column="1" Foreground="White" FontSize="12"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Grid>
+                    <Button 
+                        Style="{StaticResource CaptionButtonStyle}"
+                        Click="MinimizeButton_Click"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <TextBlock 
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="10"
+                            Foreground="White"
+                            Text="&#xE921;" />
+                    </Button>
 
+                    <Button
+                        x:Name="ToggleMaximizeButton"
+                        Style="{StaticResource CaptionButtonStyle}"
+                        Click="ToggleMaximizeButton_Click"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <TextBlock 
+                            x:Name="ToggleMaximizeText"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="10"
+                            Foreground="White"
+                            Text="&#xE922;" />
+                    </Button>
+
+                    <Button 
+                        Style="{StaticResource CaptionButtonStyle}"
+                        Click="CloseButton_Click"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <TextBlock 
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="10"
+                            Foreground="White"
+                            Text="&#xE8BB;" />
+                    </Button>
+
+                </StackPanel>
+            </Border>
         </Grid>
-    </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Side Menu -->
+            <StackPanel Grid.Column="0" Background="Black">
+                <ui:Button
+                    x:Name="HomeButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToHome">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="HomeButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Home16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="HomeButtonText" Text="Home" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+                <ui:Button
+                    x:Name="EasyShellButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToEasyShell">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="EasyShellButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Code16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="EasyShellButtonText" Text="Easy Shell" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+                <ui:Button
+                    x:Name="LogcatViewerButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToLogcatViewer">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="LogcatViewerButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Document16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="LogcatViewerButtonText" Text="Logcat Viewer" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+                <ui:Button
+                    x:Name="LiveMirrorButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToLiveMirror">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="LiveMirrorButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Video16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="LiveMirrorButtonText" Text="Live Mirror" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+                <ui:Button
+                    x:Name="ScreenCaptureButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToScreenCapture">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="ScreenCaptureButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Camera16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="ScreenCaptureButtonText" Text="Screen Capture" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+                <ui:Button
+                    x:Name="PreferencesButton"
+                    Width="240" 
+                    Height="50"
+                    Background="Transparent"
+                    Foreground="#F0F0F0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    HorizontalContentAlignment="Stretch"
+                    Click="NavigateToPreferences">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="PreferencesButtonBorder" Grid.Column="0" Width="5" Height="50" Background="White" HorizontalAlignment="Left" Visibility="Collapsed" />
+                        <ui:SymbolIcon Symbol="Settings16" Grid.Column="1" Width="100" Height="50" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock x:Name="PreferencesButtonText" Text="Preferences" Grid.Column="2" Width="135" FontFamily="{DynamicResource InterRegular}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </ui:Button>
+            </StackPanel>
+
+            <!-- Main Content -->
+            <Frame x:Name="MainContentFrame"
+                   Grid.Column="1"
+                   NavigationUIVisibility="Hidden"
+                   Background="{StaticResource Background}" />
+        </Grid>
+
+    </Grid>
 </Window>

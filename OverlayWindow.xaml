@@ -1,0 +1,71 @@
+﻿<Window x:Name="OWindow"
+        x:Class="Elixir.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Elixir"
+        mc:Ignorable="d"
+        Title="OverlayWindow" Height="800" Width="1200"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False">
+    <Grid>
+        <!-- 行の定義: 2行 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 列の定義: 3列 -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="Transparent" BorderThickness="1">
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1">
+
+        </Border>
+        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1">
+            <TextBlock Text="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Transparent" BorderThickness="1">
+            <Image 
+                Name="BLImage"
+                Opacity="0"
+                SnapsToDevicePixels="True"
+                Source="{StaticResource GirlPeeking01}"
+                HorizontalAlignment="Center">
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="BLImageTransform" />
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1">
+            <TextBlock Text="5" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1">
+            <Image 
+                Name="BRImage" 
+                Opacity="0"
+                                SnapsToDevicePixels="True"
+                Source="{StaticResource GirlPeeking01}"
+                HorizontalAlignment="Center">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <!-- 左右反転用の ScaleTransform -->
+                        <ScaleTransform ScaleX="-1" ScaleY="1" />
+                        <!-- 位置移動用の TranslateTransform -->
+                        <TranslateTransform x:Name="BRImageTransform" />
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+    </Grid>
+</Window>

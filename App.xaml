@@ -1,95 +1,195 @@
 ﻿<Application x:Class="Elixir.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Elixir"
-             StartupUri="MainWindow.xaml">
-    
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:Elixir">
     <Application.Resources>
-        <!-- タイトルバーのボタン -->
-        <Style x:Key="CaptionButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="Marlett" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#555557"/>
-                    <!-- ホバー時の色 -->
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#2A2A2C"/>
-                    <!-- クリック時の色 -->
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+                <ResourceDictionary Source="/Wpf.Ui;component/Controls/ComboBox/ComboBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <!-- 閉じるボタン（赤系） -->
-        <Style x:Key="CloseButtonStyle" BasedOn="{StaticResource CaptionButtonStyle}" TargetType="Button">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#C42B1C"/>
-                    <!-- VS 風の赤色 -->
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#A52818"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+            <!-- Images -->
+            <BitmapImage x:Key="Logo" UriSource="pack://application:,,,/Assets/Images/Logo.png" />
+            
+            <!-- Girls -->
+            <!-- Peekings -->
+            <BitmapImage x:Key="GirlPeeking01" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking01.png" />
+            <BitmapImage x:Key="GirlPeeking02" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking02.png" />
+            <BitmapImage x:Key="GirlPeeking03" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking03.png" />
+            <BitmapImage x:Key="GirlPeeking04" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking04.png" />
+            <BitmapImage x:Key="GirlPeeking05" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking05.png" />
+            <BitmapImage x:Key="GirlPeeking06" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking06.png" />
+            <BitmapImage x:Key="GirlPeeking07" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking07.png" />
+            <BitmapImage x:Key="GirlPeeking08" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking08.png" />
+            <BitmapImage x:Key="GirlPeeking09" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking09.png" />
+            <BitmapImage x:Key="GirlPeeking10" UriSource="pack://application:,,,/Assets/Images/Girls/Peekings/Peeking10.png" />
+            
+            <!-- Colors -->
+            <SolidColorBrush x:Key="Background" Color="#2E2E2E" />
+            <SolidColorBrush x:Key="Enabled" Color="#F0F0F0" />
+            <SolidColorBrush x:Key="Selected" Color="White" />
+            
+            <!-- Fonts -->
+            <FontFamily x:Key="InterRegular">pack://application:,,,/Assets/Fonts/Inter/Inter_18pt-Regular.ttf#Inter 18pt 18pt</FontFamily>
+            <FontFamily x:Key="InterBold">pack://application:,,,/Assets/Fonts/Inter/Inter_18pt-Bold.ttf#Inter 18pt 18pt</FontFamily>
 
-        <!-- サイドメニューのボタン -->
-        <Style x:Key="MenuButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="0,5,0,0"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#007ACC"/>
-                    <!-- VS ブルー -->
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#005F9E"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+            <!-- MainWindow Style -->
+            <Style TargetType="{x:Type Window}" x:Key="MainWindowStyle">
+                <Setter Property="WindowChrome.WindowChrome">
+                    <Setter.Value>
+                        <WindowChrome CornerRadius="0" GlassFrameThickness="1" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" UseAeroCaptionButtons="False"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="UseLayoutRounding" Value="True"/>
+                <Setter Property="Background" Value="#2E2E2E"/>
+                <Setter Property="BorderBrush" Value="#7160E8"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
 
-        <Style x:Key="ToolButton" TargetType="Button">
-            <Setter Property="Background" Value="#333"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#555"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#777"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+            <!-- Caption Button Style -->
+            <Style x:Key="CaptionButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="45" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Background" Value="{StaticResource Background}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Disable Corner Radius -->
+                            <Border x:Name="buttonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                CornerRadius="0">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" />
+                            </Border>
 
+                            <!-- Hover Effects -->
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="buttonBorder"
+                                        Property="Background"
+                                        Value="#535353" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="buttonBorder"
+                                        Property="Background"
+                                        Value="#303030" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Customize Components -->
+            <!-- ui:TextBox -->
+            <Style TargetType="ui:TextBox" BasedOn="{StaticResource DefaultUiTextBoxStyle}">
+                <Setter Property="Border.CornerRadius" Value="0" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+
+            <!-- ui:Button -->
+            <Style x:Key="IconButtonStyle" TargetType="ui:Button">
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+            </Style>
+
+            <!-- SymbolIcon -->
+            <Style x:Key="SymbolIconStyle" TargetType="ui:SymbolIcon">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Filled" Value="True"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+            </Style>
+            
+            <!-- DataGrid -->
+            <Style TargetType="DataGrid" BasedOn="{StaticResource DefaultDataGridStyle}">
+                <Setter Property="Border.CornerRadius" Value="0" />
+            </Style>
+
+            <Style x:Key="CenterHeaderStyle" TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultUiDataGridColumnHeaderStyle}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+
+            <!-- ComboBox -->
+            <Style TargetType="ComboBox" BasedOn="{StaticResource DefaultComboBoxStyle}">
+                <Setter Property="Border.CornerRadius" Value="0" />
+            </Style>
+
+            <!-- ComboBoxItem -->
+            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource DefaultComboBoxItemStyle}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBoxItem">
+                            <Grid Background="Transparent">
+                                <Border
+                                    Name="ContentBorder"
+                                    Margin="{DynamicResource ComboBoxItemMargin}"
+                                    Padding="0"
+                                    VerticalAlignment="Stretch"
+                                    CornerRadius="0"
+                                    SnapsToDevicePixels="True">
+                                    <Grid>
+                                        <ContentPresenter
+                                            x:Name="PART_ContentPresenter"
+                                            Margin="{TemplateBinding Padding}"
+                                            VerticalAlignment="Center" />
+                                        <Rectangle
+                                            x:Name="ActiveRectangle"
+                                            Width="3"
+                                            Height="20"
+                                            Margin="0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Fill="White"
+                                            RadiusX="0"
+                                            RadiusY="0"
+                                            Visibility="Collapsed" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsHighlighted" Value="True">
+                                    <Setter TargetName="ContentBorder" Property="Background" Value="{StaticResource Background}" />
+                                </Trigger>
+                                <!-- Rectangle -->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <CornerRadius x:Key="PopupCornerRadius">0</CornerRadius>
+
+            <SolidColorBrush x:Key="ComboBoxItemPillFillBrush" Color="Red" />
+            <SolidColorBrush x:Key="ComboBoxItemBackgroundSelected" Color="Black" />
+            <!-- Customize Components End -->
+            
+        </ResourceDictionary>
     </Application.Resources>
-
 </Application>

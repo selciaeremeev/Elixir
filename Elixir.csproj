@@ -9,21 +9,77 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\Logo.png" />
+    <Compile Remove="Assets\Images\Girls\Peeks\**" />
+    <EmbeddedResource Remove="Assets\Images\Girls\Peeks\**" />
+    <None Remove="Assets\Images\Girls\Peeks\**" />
+    <Page Remove="Assets\Images\Girls\Peeks\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Commands\" />
+    <None Remove="Assets\Fonts\Inter\Inter_18pt-Bold.ttf" />
+    <None Remove="Assets\Fonts\Inter\Inter_18pt-Regular.ttf" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking01.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking02.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking03.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking04.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking05.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking06.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking07.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking08.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking09.png" />
+    <None Remove="Assets\Images\Girls\Peekings\Peeking10.png" />
+    <None Remove="Assets\Images\Logo.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
+    <Resource Include="Assets\Icons\Icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking01.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking02.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking03.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking04.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking05.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking06.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking07.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking08.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking09.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Girls\Peekings\Peeking10.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\Logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <PackageReference Include="WPF-UI" Version="4.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\Inter\Inter_18pt-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Fonts\Inter\Inter_18pt-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

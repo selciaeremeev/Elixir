@@ -25,11 +25,10 @@ namespace Elixir.Helpers
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
-                // Extract device list from ADB output
                 var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                return lines.Skip(1) // Ignore the first line (header)
+                return lines.Skip(1)
                             .Where(line => line.EndsWith("device"))
-                            .Select(line => line.Split('\t')[0]) // Get only the device ID
+                            .Select(line => line.Split('\t')[0])
                             .ToArray();
             }
             catch (Exception ex)
@@ -61,6 +60,80 @@ namespace Elixir.Helpers
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error capturing screen: {ex.Message}");
+                return false;
+            }
+        }
+
+        public static Process StartLogcat(string deviceId)
+        {
+            try
+            {
+                var logcatProcess = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "adb",
+                        Arguments = $"-s {deviceId} logcat",
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    }
+                };
+
+                logcatProcess.Start();
+                logcatProcess.BeginOutputReadLine();
+
+                return logcatProcess;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error starting logcat: {ex.Message}");
+                return null;
+            }
+        }
+
+        // Logcat をクリア
+        public static bool ClearLogcat(string deviceId)
+        {
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/C adb -s {deviceId} logcat -c",
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                Process process = new Process { StartInfo = psi };
+                process.Start();
+                process.WaitForExit();
+                return process.ExitCode == 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error clearing logcat: {ex.Message}");
+                return false;
+            }
+        }
+
+        // Logcat を終了
+        public static bool StopLogcat(Process logcatProcess)
+        {
+            try
+            {
+                if (logcatProcess != null && !logcatProcess.HasExited)
+                {
+                    logcatProcess.Kill();
+                    logcatProcess.WaitForExit();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error stopping logcat: {ex.Message}");
                 return false;
             }
         }

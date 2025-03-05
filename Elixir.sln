@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35818.85 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elixir", "Elixir.csproj", "{1902C053-03B5-427C-B94E-BE6B5787E477}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elixir", "Elixir.csproj", "{7CD56478-A534-48CC-9805-653D1031928E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1902C053-03B5-427C-B94E-BE6B5787E477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1902C053-03B5-427C-B94E-BE6B5787E477}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1902C053-03B5-427C-B94E-BE6B5787E477}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1902C053-03B5-427C-B94E-BE6B5787E477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CD56478-A534-48CC-9805-653D1031928E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD56478-A534-48CC-9805-653D1031928E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD56478-A534-48CC-9805-653D1031928E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD56478-A534-48CC-9805-653D1031928E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0DE6B716-3855-4A80-B1F3-C0654E989035}
+		SolutionGuid = {1945D317-554E-4BAD-B920-BAE629E10773}
 	EndGlobalSection
 EndGlobal

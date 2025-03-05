@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Elixir.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +17,12 @@ using System.Windows.Shapes;
 
 namespace Elixir.Views
 {
-    /// <summary>
-    /// SettingsView.xaml の相互作用ロジック
-    /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class EasyShellView : UserControl
     {
-        public SettingsView()
+        private static EasyShellView? _instance;
+        public static EasyShellView Instance => _instance ??= new EasyShellView();
+
+        public EasyShellView()
         {
             InitializeComponent();
         }
